@@ -117,25 +117,28 @@ http://localhost:80/api/v1/partial
 http://localhost:80/api/v1/final
 
 ### routes for --dev
-/api/v1/partial (get)
-/api/v1/partial (post)
-/api/v1/partial/:id (put)
-/api/v1/partial/:id (delete)
 
-/api/v1/final (post)
-/api/v1/final (get)
+ - /api/v1/partial (get)
+ - /api/v1/partial (post)
+ - /api/v1/partial/:id (put)
+ - /api/v1/partial/:id (delete)
+
+ - /api/v1/final (post)
+ - /api/v1/final (get)
 
 
 ### Request parameters
-productId: { type: mongoose.Types.ObjectId }
-  name: { type: String }
-  email: { type: String }
-  cpf: { type: String }
-  birthDate: { type: Date }
-  phone: { type: String }
-  createDate: { type: Date, default: Date.now }
+
+ - productId: { type: mongoose.Types.ObjectId }
+ - name: { type: String }
+ - email: { type: String }
+ - cpf: { type: String }
+ - birthDate: { type: Date }
+ - phone: { type: String }
+ - createDate: { type: Date, default: Date.now }
 
 ### Optional functions -dev
-- cors / methods: "GET,OPTIONS,PUT,POST,DELETE"
-- upload files / multer
-- auth / jsonwebtoken (jwt)
+
+ - cors / methods: "GET,OPTIONS,PUT,POST,DELETE"
+ - upload files / multer
+ - auth / jsonwebtoken (jwt)
