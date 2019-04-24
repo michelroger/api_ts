@@ -45,5 +45,11 @@ class PartialController {
         }))
             .catch(error => console.error.bind(console, `Error ${error}`));
     }
+    delete(req, res) {
+        const _id = req.params.id;
+        partialService_1.default.delete(_id)
+            .then(() => helper_1.default.sendResponse(res, HttpStatus.OK, "Proposta deletada com sucesso!"))
+            .catch(error => console.error.bind(console, `Error ${error}`));
+    }
 }
 exports.default = new PartialController();

@@ -78,17 +78,16 @@ class PartialController {
       .catch(error => console.error.bind(console, `Error ${error}`));
   }
 
-  /*
   delete(req, res) {
-   const _id = req.params.id;
- 
-   PropostaService.delete(_id)
-     .then(() =>
-       Helper.sendResponse(res, HttpStatus.OK, "Proposta deletada com sucesso!")
-     )
-     .catch(error => console.error.bind(console, `Error ${error}`));
- }
- */
+    const _id = req.params.id;
+
+    PartialService.delete(_id)
+      .then(() =>
+        Helper.sendResponse(res, HttpStatus.OK, "Proposta deletada com sucesso!")
+      )
+      .catch(error => console.error.bind(console, `Error ${error}`));
+  }
+
 
 }
 
