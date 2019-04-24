@@ -2,7 +2,7 @@ import FinalService from "../services/finalService";
 import * as express from "express";
 import * as HttpStatus from "http-status";
 import Helper from "../infra/helper";
-import * as Moment from "moment"
+import * as moment from "moment";
 
 class PartialController {
 
@@ -21,7 +21,7 @@ class PartialController {
       .catch(error => console.error.bind(console, `Error ${error}`));
   }
 
-  create(req, res) {
+  async create(req, res) {
 
     const dataset = req.body;
     const name = dataset.name;
@@ -53,11 +53,33 @@ class PartialController {
       errors.push({ "phone": "Informe um fone válido no formato: (99) 99999-9999" });
     }
 
-    if (errors) {
+    if (errors.length == 0) {
+      //verificação de proposta por 90 dias do cpf
+      let cpfAux = String(cpf).replace(" ", "").replace(".", "").replace("-", "").replace(",", "");
+      var promise = await FinalService.getByCpf(cpfAux)
+      if (promise.length > 0) {
+        var flag = false;
+        const dataNow = moment(new Date, "YYYY-MM-DD", true)
+        promise.forEach(function (proposta) {
+          let dataProposta = moment(proposta.createDate, "YYYY-MM-DD", true)
+          let dif = dataNow.diff(dataProposta, "days");
+          if (dif <= 90) {
+            flag = true;
+          }
+        });
+
+        if (flag) {
+          errors.push({ "cpf": `cpf: ${cpf}, já realizou uma proposta nos últimos 90 dias.` });
+        }
+      }
+
+    }
+
+    if (errors.length > 0) {
       Helper.sendResponse(res, HttpStatus.BAD_REQUEST, errors)
     } else {
-      /*
-      FinalService.create(dataset)
+
+      FinalService.create(req, res, dataset)
         .then(proposta =>
           Helper.sendResponse(
             res,
@@ -69,36 +91,10 @@ class PartialController {
           )
         )
         .catch(error => console.error.bind(console, `Error ${error}`));
-            */
+
     }
   }
 
-  update(req, res) {
-    const _id = req.params.id;
-    let dataset = req.body;
-
-    FinalService.update(_id, dataset)
-      .then(proposta =>
-        Helper.sendResponse(
-          res,
-          HttpStatus.OK,
-          "Proposta foi atualiza com sucesso!"
-        )
-      )
-      .catch(error => console.error.bind(console, `Error ${error}`));
-  }
-
-  /*
-   delete(req, res) {
-    const _id = req.params.id;
-
-    PropostaService.delete(_id)
-      .then(() =>
-        Helper.sendResponse(res, HttpStatus.OK, "Proposta deletada com sucesso!")
-      )
-      .catch(error => console.error.bind(console, `Error ${error}`));
-  }
-  */
 
 }
 

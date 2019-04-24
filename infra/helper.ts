@@ -9,6 +9,10 @@ class Helper {
     res.status(statusCode).json({ result: data });
   };
 
+  sendResponse2 = function (res, data) {
+    return res.json({ result: data });
+  };
+
   validateCPF = (cpf: string): boolean => {
     let sum, rest
 

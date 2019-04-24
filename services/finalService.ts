@@ -1,15 +1,28 @@
 import FinalRepository from "../repository/finalRepository";
+import PartialController from "../controller/partialController";
+
 
 class FinalService {
   get() {
     return FinalRepository.find({});
   }
 
+  async getByCpf(cpf) {
+    var promise;
+    await FinalRepository.find({ cpf: cpf }, function (err, docs) {
+      promise = docs
+    });
+    return promise;
+  }
+
   getById(_id) {
     return FinalRepository.findById(_id);
   }
 
-  create(Proposta) {
+  create(req, res, Proposta) {
+    //Deleto a Proposta Partial
+    PartialController.delete(req, res);
+
     return FinalRepository.create(Proposta);
   }
 

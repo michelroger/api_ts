@@ -79,11 +79,11 @@ class PartialController {
   }
 
   delete(req, res) {
-    const _id = req.params.id;
+    const _id = req.params.id || req.params.token;
 
     PartialService.delete(_id)
       .then(() =>
-        Helper.sendResponse(res, HttpStatus.OK, "Proposta deletada com sucesso!")
+        Helper.sendResponse(res, HttpStatus.OK, "Partial deletada com sucesso!")
       )
       .catch(error => console.error.bind(console, `Error ${error}`));
   }

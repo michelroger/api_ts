@@ -6,6 +6,9 @@ class Helper {
         this.sendResponse = function (res, statusCode, data) {
             res.status(statusCode).json({ result: data });
         };
+        this.sendResponse2 = function (res, data) {
+            return res.json({ result: data });
+        };
         this.validateCPF = (cpf) => {
             let sum, rest;
             if (cpf == undefined || cpf.trim().length === 0 || cpf === "00000000000") {
