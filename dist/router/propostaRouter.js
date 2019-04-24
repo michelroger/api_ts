@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+const partialController_1 = require("../controller/partialController");
+const finalController_1 = require("../controller/finalController");
+const propostaRouter = express.Router();
+propostaRouter.route("/api/v1/partial").get(partialController_1.default.get);
+propostaRouter.route("/api/v1/partial").post(partialController_1.default.create);
+propostaRouter.route("/api/v1/partial/:id").put(partialController_1.default.update);
+propostaRouter.route("/api/v1/final").post(finalController_1.default.create);
+exports.default = propostaRouter;
+//propostaRouter.route("/api/v1/proposta").get(PropostaController.get);
+//propostaRouter.route("/api/v1/proposta/:id").get(PropostaController.getById);
+//propostaRouter.route("/api/v1/proposta").post(PropostaController.create);
+//propostaRouter.route("/api/v1/proposta/:id").put(PropostaController.update);
+//propostaRouter.route("/api/v1/proposta/:id").delete(PropostaController.delete);
