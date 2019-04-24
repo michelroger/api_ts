@@ -139,8 +139,3 @@ productId: { type: mongoose.Types.ObjectId }
 - cors / methods: "GET,OPTIONS,PUT,POST,DELETE"
 - upload files / multer
 - auth / jsonwebtoken (jwt)
-
-
- 
-
-
