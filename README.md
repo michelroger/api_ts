@@ -6,6 +6,7 @@ Teste construindo API
   - NodeJS
   - npm ou yarn
   - mongoDB
+  - typy-script
   - body-parser": "^1.18.3",
   -  "cors": "^2.8.5",
   -  "express": "^4.16.4",
