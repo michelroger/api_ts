@@ -19,7 +19,7 @@ class Helper {
     if (cpf == undefined || cpf.trim().length === 0 || cpf === "00000000000") {
       return false
     }
-    cpf = cpf.replace('.', '').replace('.', '').replace('-', '')
+    cpf = cpf.replace(" ", "").replace(".", "").replace(".", "").replace(".", "").replace("-", "").replace(",", "");
 
     sum = 0
     for (let i = 1; i <= 9; i++) {

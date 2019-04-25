@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
+/* Classe responsável por realizar a conexão com o mongoDb via mongoose */
 class Database {
     constructor() {
         this.DB_URL = "mongodb://localhost:27017/foregon";

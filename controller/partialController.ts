@@ -1,10 +1,11 @@
 import PartialService from "../services/partialService";
 import * as HttpStatus from "http-status";
-
-
-
 import Helper from "../infra/helper";
 
+
+/*
+  classe responsável controlar ações da partial
+*/
 class PartialController {
 
 
@@ -23,25 +24,39 @@ class PartialController {
   }
 
 
-  create(req, res) {
+  async create(req, res) {
     let dataset = req.body;
     const _id = req.body.token;
 
 
-    if (_id) {
-      PartialService.update(_id, dataset)
-        .then(proposta =>
-          Helper.sendResponse(
-            res,
-            HttpStatus.OK,
-            {
-              "success": HttpStatus.OK,
-              "token": proposta.id
-            }
-          )
-        )
-        .catch(error => console.error.bind(console, `Error ${error}`));
 
+    if (_id) {
+      var promise = await PartialService.getByToken(_id)
+
+      if (promise.length > 0) {
+
+        PartialService.update(_id, dataset)
+          .then(proposta =>
+            Helper.sendResponse(
+              res,
+              HttpStatus.OK,
+              {
+                "success": HttpStatus.OK,
+                "token": proposta.id
+              }
+            )
+          )
+          .catch(error => console.error.bind(console, `Error ${error}`));
+      }
+
+      Helper.sendResponse(
+        res,
+        HttpStatus.BAD_REQUEST,
+        {
+          "success": HttpStatus.BAD_REQUEST,
+          "token": `${_id} não foi localizado para realizar o update`
+        }
+      )
     }
     else {
       PartialService.create(dataset)

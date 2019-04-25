@@ -8,6 +8,9 @@ const db_1 = require("./infra/db");
 //import uploads from "./infra/uploads";
 //import newsRouter from "./router/newsRouter";
 const propostaRouter_1 = require("./router/propostaRouter");
+/*
+  Classe responsável por realizar o start e configurações da api
+*/
 class StartUp {
     //private bodyParser;
     constructor() {

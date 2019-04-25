@@ -12,6 +12,9 @@ const finalService_1 = require("../services/finalService");
 const HttpStatus = require("http-status");
 const helper_1 = require("../infra/helper");
 const moment = require("moment");
+/*
+  classe responsável controlar ações da Final
+*/
 class PartialController {
     get(req, res) {
         finalService_1.default.get()
@@ -26,6 +29,7 @@ class PartialController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            req.body.cpf = String(req.body.cpf).replace(" ", "").replace(".", "").replace(".", "").replace(".", "").replace("-", "").replace(",", "");
             const dataset = req.body;
             const name = dataset.name;
             const email = dataset.email;
@@ -53,8 +57,7 @@ class PartialController {
             }
             if (errors.length == 0) {
                 //verificação de proposta por 90 dias do cpf
-                let cpfAux = String(cpf).replace(" ", "").replace(".", "").replace("-", "").replace(",", "");
-                var promise = yield finalService_1.default.getByCpf(cpfAux);
+                var promise = yield finalService_1.default.getByCpf(cpf);
                 if (promise.length > 0) {
                     var flag = false;
                     const dataNow = moment(new Date, "YYYY-MM-DD", true);

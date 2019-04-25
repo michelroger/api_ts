@@ -7,6 +7,10 @@ import Database from "./infra/db";
 //import newsRouter from "./router/newsRouter";
 import propostaRouter from "./router/propostaRouter";
 
+
+/*
+  Classe responsável por realizar o start e configurações da api
+*/
 class StartUp {
   public app: express.Application;
   private _db: Database;

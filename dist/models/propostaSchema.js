@@ -10,4 +10,5 @@ const PropostaSchema = new mongoose.Schema({
     phone: { type: String },
     createDate: { type: Date, default: Date.now }
 });
+/* exporta um schema com o formato de proposta */
 exports.default = PropostaSchema;

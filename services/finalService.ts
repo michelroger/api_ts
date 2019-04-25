@@ -1,7 +1,9 @@
 import FinalRepository from "../repository/finalRepository";
 import PartialController from "../controller/partialController";
 
-
+/*
+  classe responsável por realizar query na collection finals mongoDB
+*/
 class FinalService {
   get() {
     return FinalRepository.find({});
@@ -22,7 +24,7 @@ class FinalService {
   create(req, res, Proposta) {
     //Deleto a Proposta Partial
     PartialController.delete(req, res);
-
+    //Crio a proposta Final
     return FinalRepository.create(Proposta);
   }
 
@@ -31,7 +33,7 @@ class FinalService {
   }
 
   delete(_id) {
-    return FinalRepository.findByIdAndRemove(_id);
+    return FinalRepository.findOneAndDelete(_id);
   }
 }
 

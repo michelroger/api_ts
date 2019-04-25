@@ -10,6 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const finalRepository_1 = require("../repository/finalRepository");
 const partialController_1 = require("../controller/partialController");
+/*
+  classe responsável por realizar query na collection finals mongoDB
+*/
 class FinalService {
     get() {
         return finalRepository_1.default.find({});
@@ -29,13 +32,14 @@ class FinalService {
     create(req, res, Proposta) {
         //Deleto a Proposta Partial
         partialController_1.default.delete(req, res);
+        //Crio a proposta Final
         return finalRepository_1.default.create(Proposta);
     }
     update(_id, Proposta) {
         return finalRepository_1.default.findByIdAndUpdate(_id, Proposta);
     }
     delete(_id) {
-        return finalRepository_1.default.findByIdAndRemove(_id);
+        return finalRepository_1.default.findOneAndDelete(_id);
     }
 }
 exports.default = new FinalService();

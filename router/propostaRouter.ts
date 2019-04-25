@@ -3,6 +3,9 @@ import PartialController from "../controller/partialController";
 import FinalController from "../controller/finalController";
 
 const propostaRouter = express.Router();
+/*
+  realiza configurações das rotas da api
+*/
 
 propostaRouter.route("/api/v1/partial").get(PartialController.get);
 propostaRouter.route("/api/v1/partial").post(PartialController.create);
@@ -15,3 +18,4 @@ propostaRouter.route("/api/v1/final").get(FinalController.get);
 
 
 export default propostaRouter;
+

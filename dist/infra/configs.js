@@ -5,4 +5,5 @@ class Configs {
         this.secret = "batman batman batman";
     }
 }
+/* quando for nescessário trabalhar com jwt */
 exports.default = new Configs();

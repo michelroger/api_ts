@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = require("jsonwebtoken");
 const configs_1 = require("./configs");
+/* classe para utilização de acesso a api com jwt */
 class Auth {
     validate(req, res, next) {
         var token = req.headers["x-access-token"];

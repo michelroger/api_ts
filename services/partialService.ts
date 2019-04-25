@@ -9,16 +9,24 @@ class PartialService {
     return PartialRepository.findById(_id);
   }
 
+  async getByToken(_id) {
+    var promise;
+    await PartialRepository.find({ _id: _id }, function (err, docs) {
+      promise = docs
+    });
+    return promise;
+  }
+
   create(Proposta) {
     return PartialRepository.create(Proposta);
   }
 
   update(_id, Proposta) {
-    return PartialRepository.findByIdAndUpdate(_id, Proposta);
+    return PartialRepository.findOneAndUpdate(_id, Proposta);
   }
 
   delete(_id) {
-    return PartialRepository.findByIdAndRemove(_id);
+    return PartialRepository.findOneAndDelete(_id);
   }
 }
 

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const startUp_1 = require("./startUp");
 let port = process.env.PORT || "3050";
+/* Starta a api e configura portas */
 startUp_1.default.app.listen(port, function () {
     console.log(`servidor executando na porta ${port}`);
 });

@@ -3,7 +3,9 @@ import * as express from "express";
 import * as HttpStatus from "http-status";
 import Helper from "../infra/helper";
 import * as moment from "moment";
-
+/*
+  classe responsável controlar ações da Final
+*/
 class PartialController {
 
 
@@ -23,6 +25,7 @@ class PartialController {
 
   async create(req, res) {
 
+    req.body.cpf = String(req.body.cpf).replace(" ", "").replace(".", "").replace(".", "").replace(".", "").replace("-", "").replace(",", "");
     const dataset = req.body;
     const name = dataset.name;
     const email = dataset.email;
@@ -55,8 +58,9 @@ class PartialController {
 
     if (errors.length == 0) {
       //verificação de proposta por 90 dias do cpf
-      let cpfAux = String(cpf).replace(" ", "").replace(".", "").replace("-", "").replace(",", "");
-      var promise = await FinalService.getByCpf(cpfAux)
+
+      var promise = await FinalService.getByCpf(cpf)
+
       if (promise.length > 0) {
         var flag = false;
         const dataNow = moment(new Date, "YYYY-MM-DD", true)
@@ -67,7 +71,6 @@ class PartialController {
             flag = true;
           }
         });
-
         if (flag) {
           errors.push({ "cpf": `cpf: ${cpf}, já realizou uma proposta nos últimos 90 dias.` });
         }
