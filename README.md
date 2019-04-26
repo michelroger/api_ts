@@ -75,6 +75,14 @@ cd {path}/api_ts}
 $ docker-compose up
 ```
 
+or
+
+```sh
+cd {path}/api_ts}
+$ docker pull michelroger/api-ts
+```
+
+
 Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 3050 of the host to port 3050 of the Docker (or whatever port was exposed in the Dockerfile):
 
 ```sh
