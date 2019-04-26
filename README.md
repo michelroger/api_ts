@@ -35,14 +35,13 @@ Teste construindo API
 - "tsc": "^1.20150623.0",
 - "typescript": "^3.4.5"
 
-### Installation
 
-### BD
 
-docker hub
+### image
+
+- docker hub
 image: michelroger/api-ts
-ports:
-"3050:3050"
+
 
 ## config class Database
 
@@ -50,6 +49,7 @@ ports:
 
 private DB_URL = "mongodb://link-db/foregon";
 
+#### File
 #### docker-compose
 
 version: "3"
@@ -63,11 +63,12 @@ image: tutum/mongodb
 ports: - "27017:27017" - "28017:28017"
 environment: - AUTH=no
 
+## Installation
 ### Docker
 
 api_ts is very easy to install and deploy in a Docker container.
 
-By default, the Docker will expose port 3050, so change this within the Dockerfile if necessary. When ready, simply use the Dockerfile to build the image.
+By default, the Docker will expose port 3050, so change this within the Dockerfile / docker-compose if necessary. When ready, simply use the Dockerfile to build the image.
 
 ```sh
 cd {path}/api_ts}
@@ -111,17 +112,16 @@ http://localhost:3050/api/v1/final
 - /api/v1/final (post)
 - /api/v1/final (get)
 
-### Request parameters
+### POST Request parameters
 
-- productId: { type: mongoose.Types.ObjectId }
+- token: { type: mongoose.Types.ObjectId }
 - name: { type: String }
 - email: { type: String }
 - cpf: { type: String }
 - birthDate: { type: Date }
-- phone: { type: String }
-- createDate: { type: Date, default: Date.now }
+- phone: { type: String } 
 
-### Optional functions -dev
+### Optional functions api
 
 - cors / methods: "GET,OPTIONS,PUT,POST,DELETE"
 - upload files / multer
