@@ -1,12 +1,11 @@
 {
   "name": "api_ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Api teste",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "tsc -w",
-    "start": "nodemon ./dist/program.js"
+    "start": "nodemon program.js"
   },
   "keywords": [],
   "author": "Michel Roger",
@@ -39,5 +38,9 @@
     "nodemon": "^1.18.11",
     "tsc": "^1.20150623.0",
     "typescript": "^3.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michelroger/api_ts.git"
   }
 }
